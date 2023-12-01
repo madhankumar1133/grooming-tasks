@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Form</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Input Form</h2>
+    <form id="myForm">
+        <!-- Input Boxes -->
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName"><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"><br>
+
+        <label for="fatherName">Father's Name:</label>
+        <input type="text" id="fatherName" name="fatherName"><br>
+
+        <label for="motherName">Mother's Name:</label>
+        <input type="text" id="motherName" name="motherName"><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="text" id="dob" name="dob"><br>
+
+        <label for="currentAddress">Current Address:</label>
+        <input type="text" id="currentAddress" name="currentAddress"><br>
+
+        <label for="permanentAddress">Permanent Address:</label>
+        <input type="text" id="permanentAddress" name="permanentAddress"><br>
+
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender"><br>
+
+        <label for="maritalStatus">Marital Status:</label>
+        <input type="text" id="maritalStatus" name="maritalStatus"><br>
+
+        <label for="sslcMarks">SSLC Marks:</label>
+        <input type="text" id="sslcMarks" name="sslcMarks"><br>
+
+        <label for="hscMarks">HSC Marks:</label>
+        <input type="text" id="hscMarks" name="hscMarks"><br>
+
+        <label for="bachelorDegree">Bachelor's Degree:</label>
+        <input type="text" id="bachelorDegree" name="bachelorDegree"><br>
+
+        <label for="masterDegree">Master's Degree:</label>
+        <input type="text" id="masterDegree" name="masterDegree"><br>
+
+        <label for="workExperience">Work Experience:</label>
+        <input type="text" id="workExperience" name="workExperience"><br>
+
+        <label for="currentWork">Current Work:</label>
+        <input type="text" id="currentWork" name="currentWork"><br>
+
+        <label for="positionName">Position Name:</label>
+        <input type="text" id="positionName" name="positionName"><br>
+
+        <label for="income">Income:</label>
+        <input type="text" id="income" name="income"><br>
+
+        <label for="nationality">Nationality:</label>
+        <input type="text" id="nationality" name="nationality"><br>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevents the default form submission
+
+            // Get input values
+            let inputs = [];
+            for (let i = 1; i <= 18; i++) {
+                let inputId = document.getElementById('input' + i);
+                let inputValue = inputId.value;
+                inputs.push(inputValue);
+            }
+
+            // Display input values in a table
+            displayTable(inputs);
+        });
+
+        function displayTable(inputs) {
+            let resultDiv = document.getElementById('result');
+
+            // Create a table dynamically
+            let table = document.createElement('table');
+            let headerRow = table.insertRow(0);
+
+            // Add headers
+            for (let i = 0; i < inputs.length; i++) {
+                let headerCell = headerRow.insertCell(i);
+                headerCell.textContent = inputs[i].charAt(0).toUpperCase() + inputs[i].slice(1); // Capitalize first letter
+            }
+
+            // Add data row
+            let dataRow = table.insertRow(1);
+            inputs.forEach((value, index) => {
+                let cell = dataRow.insertCell(index);
+                cell.textContent = value;
+            });
+
+            // Append the table to the result div
+            resultDiv.innerHTML = '';
+            resultDiv.appendChild(table);
+        }
+    </script>
+
+</body>
+</html>
